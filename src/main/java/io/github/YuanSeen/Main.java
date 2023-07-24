@@ -1,6 +1,8 @@
 package io.github.YuanSeen;
 
 import com.mojang.logging.LogUtils;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -17,6 +19,15 @@ public class Main {
     public static final String MOD_ID = "modstu";
     //修改模组名称
     private static final Logger LOGGER = LogUtils.getLogger();
+
+    //物品栏声明
+    public static final CreativeModeTab TUTORIAL_TAB = new CreativeModeTab(MOD_ID) {
+        @Override
+        public ItemStack makeIcon() {
+            //这个是物品栏的图标使用哪个物品来展示
+            return new ItemStack();
+        }
+    };
 
     public Main(){
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
