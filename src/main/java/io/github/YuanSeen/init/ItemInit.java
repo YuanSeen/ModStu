@@ -13,7 +13,7 @@ public class ItemInit {
 
     public static final RegistryObject<Item> LEI = register("lei",
             () -> new Item(new Item.Properties().tab(Main.TUTORIAL_TAB)));
-    //我们的第一个物品
+    //第一个物品
 
     public static final RegistryObject<Item> FAKE = register("fake",
             () -> new Item(new Item.Properties().tab(Main.TUTORIAL_TAB)));

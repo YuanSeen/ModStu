@@ -1,6 +1,7 @@
 package io.github.YuanSeen;
 
 import com.mojang.logging.LogUtils;
+import io.github.YuanSeen.init.BlockInit;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Blocks;
@@ -25,7 +26,7 @@ public class Main {
         @Override
         public ItemStack makeIcon() {
             //这个是物品栏的图标使用哪个物品来展示
-            return new ItemStack();
+            return new ItemStack(BlockInit.EXAMPLE_BLOCK.get());
         }
     };
 
