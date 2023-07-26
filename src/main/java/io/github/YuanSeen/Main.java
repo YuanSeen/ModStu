@@ -1,6 +1,7 @@
 package io.github.YuanSeen;
 
 import com.mojang.logging.LogUtils;
+import io.github.YuanSeen.item.ModItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Blocks;
@@ -23,6 +24,8 @@ public class Main {
     //重要的构造方法
     public Main(){
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+
+        ModItem.register(modEventBus);
 
         modEventBus.addListener(this::commonSetup);
         MinecraftForge.EVENT_BUS.register(this);
