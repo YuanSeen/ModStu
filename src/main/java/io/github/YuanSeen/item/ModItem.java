@@ -13,6 +13,8 @@ public class ModItem {
 
     public static final RegistryObject<Item> CE4SHI4WU4PIN3 = ITEM.register("ce4shi4wu4pin3",
             ()->new Item(new Item.Properties().tab(CreativeModeTab.TAB_FOOD)));
+    public static final RegistryObject<Item> HENG2XIN1CAO3 = ITEM.register("heng2xin1cao3",
+            ()->new Item(new Item.Properties().tab(CreativeModeTab.TAB_FOOD)));
     public static final RegistryObject<Item> CESHIWUPIN = ITEM.register("ce4shi4wu4pin302",
             ()->new Item(new Item.Properties().tab(CreativeModeTab.TAB_TOOLS)));
 
