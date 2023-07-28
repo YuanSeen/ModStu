@@ -14,15 +14,12 @@ public class ModItem {
     public static final RegistryObject<Item> CE4SHI4WU4PIN3 = ITEM.register("ce4shi4wu4pin3",
             ()->new Item(new Item.Properties().tab(CreativeModeTab.TAB_FOOD)));
     public static final RegistryObject<Item> CESHIWUPIN = ITEM.register("ce4shi4wu4pin302",
-            ()->new Item(new Item.Properties().tab(CreativeModeTab.TAB_BUILDING_BLOCKS)));
+            ()->new Item(new Item.Properties().tab(CreativeModeTab.TAB_TOOLS)));
 
 
     public static void register(IEventBus modEventBus){
         ITEM.register(modEventBus);
     }
-
-
-
 
 
 
