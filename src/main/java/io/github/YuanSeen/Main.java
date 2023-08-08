@@ -1,6 +1,7 @@
 package io.github.YuanSeen;
 
 import com.mojang.logging.LogUtils;
+import io.github.YuanSeen.block.ModBlock;
 import io.github.YuanSeen.item.ModItem;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -22,6 +23,7 @@ public class Main {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
         ModItem.register(modEventBus);
+        ModBlock.register(modEventBus);
 
         modEventBus.addListener(this::commonSetup);
         MinecraftForge.EVENT_BUS.register(this);
