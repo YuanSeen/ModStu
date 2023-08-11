@@ -20,7 +20,6 @@ public class ModItem {
             ()->new Item(new Item.Properties().tab(ModCreativeModeTab.MODSTU_TAB_YAO4CAI2)));
     //创建了一个叫做 恒心草 的物品，放在了 药材 物品栏
 
-
     public static final RegistryObject<Item> CE4SHI4WU4PIN302 = ITEM.register("ce4shi4wu4pin302",
             ()->new Item(new Item.Properties().tab(ModCreativeModeTab.MODSTU_TAB_QI2TA1)));
     //创建了一个叫做 测试物品02（奇怪的袋子） 的物品，放在了 其他 物品栏
