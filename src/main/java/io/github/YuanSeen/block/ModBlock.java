@@ -1,6 +1,5 @@
 package io.github.YuanSeen.block;
 
-import com.mojang.blaze3d.shaders.Uniform;
 import io.github.YuanSeen.Main;
 import io.github.YuanSeen.item.ModCreativeModeTab;
 import io.github.YuanSeen.item.ModItem;
@@ -24,11 +23,13 @@ public class ModBlock {
     public static final RegistryObject<Block> LING2SHI2KUANG4 = BLOCK.register("ling2shi2kuang4",
             ()->new DropExperienceBlock(BlockBehaviour.Properties
                     .of(Material.STONE)
-                    .strength(6f)
+                    .strength(3f)
                     .requiresCorrectToolForDrops()
+                    , UniformInt.of(3,7)
             ));
-    public static final RegistryObject<Item> LINSHI2KUANG4 = ModItem.ITEM.register("LIN2SHI2kuang4",
-            ()->new BlockItem(LING2SHI2KUANG4.get(),new Item.Properties().tab(ModCreativeModeTab.MODSTU_TAB_QI2TA1)));
+
+    public static final RegistryObject<Item> LINGSHI2KUANG4 = ModItem.ITEM.register("ling2shi2kuang4",
+            ()->new BlockItem(LING2SHI2KUANG4.get(), new Item.Properties().tab(ModCreativeModeTab.MODSTU_TAB_QI2TA1)));
 
     public static void register(IEventBus modEventBus){
         BLOCK.register(modEventBus);

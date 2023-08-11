@@ -1,3 +1,5 @@
 {
-  ""
+  "variants": {
+    "": {"model": "modstu:block/ling2shi2kuang4"}
+  }
 }

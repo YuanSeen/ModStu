@@ -1,0 +1,6 @@
+{
+  "parent": "block/cube_all",
+  "textures":{
+    "all": "modstu:block/ling2shi2kuang4"
+  }
+}
