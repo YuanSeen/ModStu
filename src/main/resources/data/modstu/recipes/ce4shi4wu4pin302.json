@@ -1,0 +1,20 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+      "# #",
+      "#A#",
+      "###"
+    ],
+    "key": {
+      "#": {
+        "item": "minecraft:purple_wool"
+      },
+      "A": {
+        "item": "modstu:heng2xin1cao3"
+      }
+    },
+    "result": {
+      "count": 1,
+      "item": "modstu:ce4shi4wu4pin302"
+    }
+}
