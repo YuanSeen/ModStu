@@ -1,6 +1,7 @@
 package io.github.YuanSeen.item;
 
 import io.github.YuanSeen.Main;
+import io.github.YuanSeen.item.custom.qin1ming2dan1;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -23,6 +24,15 @@ public class ModItem {
     public static final RegistryObject<Item> CE4SHI4WU4PIN302 = ITEM.register("ce4shi4wu4pin302",
             ()->new Item(new Item.Properties().tab(ModCreativeModeTab.MODSTU_TAB_QI2TA1)));
     //创建了一个叫做 测试物品02（奇怪的袋子） 的物品，放在了 其他 物品栏
+
+    public static final RegistryObject<Item> LING2SHI2 = ITEM.register("ling2shi2",
+            ()->new Item(new Item.Properties().tab(ModCreativeModeTab.MODSTU_TAB_QI2TA1)));
+
+    public static final RegistryObject<Item> ZIRCON = ITEM.register("zircon",
+            ()->new Item(new Item.Properties().tab(ModCreativeModeTab.MODSTU_TAB_QI2TA1)));
+
+    public static final RegistryObject<Item> QIN1MING2DAN1 = ITEM.register("qin1ming2dan1",
+            ()->new qin1ming2dan1(new Item.Properties().tab(ModCreativeModeTab.MODSTU_TAB_QI2TA1).stacksTo(8)));
 
 
     public static void register(IEventBus modEventBus){
