@@ -22,7 +22,7 @@ public class qin1ming2dan1 extends Item {
         if(!level.isClientSide() && hand.equals(InteractionHand.MAIN_HAND)){
             player.sendSystemMessage(Component.literal("一股神秘力量阻止你服下丹药。"));
             player.sendSystemMessage(Component.literal("但药香让你感受到满足。"));
-            player.addEffect(new MobEffectInstance(MobEffects.SATURATION,20));
+            player.addEffect(new MobEffectInstance(MobEffects.SATURATION,2000));
         }
         return super.use(level, player, hand);
     }
