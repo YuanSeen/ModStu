@@ -6,17 +6,18 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.item.FallingBlockEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.EntityCollisionContext;
@@ -28,7 +29,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
  *
  * 基本目标：写一个方块，踩上去后获得debuff √
  *
- * 中间目标：方块同细雪一样
+ * 中间目标：方块同细雪一样               √
  *
  * 最后：可以被桶装起来
  */
@@ -73,10 +74,15 @@ public class si3wang2mi2wu4 extends Block {
 
     // 实现了entityInside方法，处理实体进入方块内部的逻辑
     public void entityInside(BlockState blockState, Level level, BlockPos blockPos, Entity entity) {
+
         // 实体为LivingEntity且站在该方块上或实体的脚下方块是迷雾
         if (!(entity instanceof LivingEntity) || entity.getFeetBlockState().is(this)) {
             // 使实体陷入方块内部
             entity.makeStuckInBlock(blockState, new Vec3((double)0.9F, 1.5D, (double)0.9F));
+            if(!level.isClientSide && entity instanceof LivingEntity living){
+                living.addEffect(new MobEffectInstance(MobEffects.BLINDNESS,200));
+                living.addEffect(new MobEffectInstance(MobEffects.WITHER,200));
+            }
             if (level.isClientSide) {
                 RandomSource randomsource = level.getRandom();
                 boolean flag = entity.xOld != entity.getX() || entity.zOld != entity.getZ();
@@ -88,8 +94,6 @@ public class si3wang2mi2wu4 extends Block {
             }
         }
 
-//        // 将实体标记为在粉雪块中
-//        entity.setIsInPowderSnow(true);
 //        if (!level.isClientSide) {
 //            // 如果实体正在燃烧，且游戏规则允许实体破坏方块，或者实体为玩家，则销毁方块
 //            if (entity.isOnFire() && (level.getGameRules().getBoolean(GameRules.RULE_MOBGRIEFING) || entity instanceof Player) && entity.mayInteract(level, blockPos)) {
@@ -109,10 +113,7 @@ public class si3wang2mi2wu4 extends Block {
             if (entity != null) {
                 // 如果实体的掉落距离大于2.5，返回方块的碰撞形状FALLING_COLLISION_SHAPE
                 if (entity.fallDistance > 2.5F) {
-//                    if(entity instanceof LivingEntity livingEntity){
-//                        livingEntity.addEffect(new MobEffectInstance(MobEffects.WITHER,20));
-//                        livingEntity.addEffect(new MobEffectInstance(MobEffects.BLINDNESS,20));
-//                    }
+
                     return FALLING_COLLISION_SHAPE;
                 }
             }
@@ -128,17 +129,12 @@ public class si3wang2mi2wu4 extends Block {
         return Shapes.empty();
     }
 
-//    @Override
-//    public void stepOn(Level level, BlockPos blockPos, BlockState blockState, Entity entity) {
-//        if(entity instanceof LivingEntity livingEntity){
-//            livingEntity.addEffect(new MobEffectInstance(MobEffects.WITHER,20));
-//            livingEntity.addEffect(new MobEffectInstance(MobEffects.BLINDNESS,20));
-//        }
-//        if(!level.isClientSide() && entity instanceof Player player ){
-//            player.sendSystemMessage(Component.literal("你感受到了恐惧。"));
-//        }
-//        //目前问题：当玩家踩上去后会不断的发送信息，而不是只发送一次。
-//
-//        super.stepOn(level, blockPos, blockState, entity);
-//    }
+    @Override
+    public void attack(BlockState blockState, Level level, BlockPos blockPos, Player player) {
+        if(!level.isClientSide()){
+            player.sendSystemMessage(Component.literal("你感受到了恐惧."));
+        }
+        //当玩家试图破坏迷雾，就会发出信息/
+        super.attack(blockState, level, blockPos, player);
+    }
 }

@@ -61,7 +61,7 @@ public class ModBlock {
     public static final RegistryObject<Block> SI3WANG2MI2WU4 = registryBlock("si3wang2mi2wu4",
             () -> new si3wang2mi2wu4(BlockBehaviour.Properties
                     .of(Material.POWDER_SNOW)
-                    .strength(0.3f)
+                    .strength(8f)
                     .requiresCorrectToolForDrops()),
             ModCreativeModeTab.MODSTU_TAB_QI2TA1);
     //这是死亡迷雾的双注册
