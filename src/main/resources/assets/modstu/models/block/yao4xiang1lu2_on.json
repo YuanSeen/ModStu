@@ -1,0 +1,9 @@
+{
+  "parent": "block/orientable",
+  "textures": {
+    "front": "modstu:block/yao4xiang1lu2_front_on",
+    "side": "modstu:block/yao4xiang1lu2_side_on",
+    "top": "modstu:block/yao4xiang1lu2_top",
+    "bottom": "modstu:block/yao4xiang1lu2_bottom"
+  }
+}
