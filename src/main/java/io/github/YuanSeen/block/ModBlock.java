@@ -73,7 +73,8 @@ public class ModBlock {
             () -> new yao4xiang1lu2(BlockBehaviour.Properties
                     .of(Material.STONE)
                     .strength(2f)
-                    .requiresCorrectToolForDrops())
+                    .requiresCorrectToolForDrops()
+                    .lightLevel(state ->state.getValue(yao4xiang1lu2.USE)?15:0))
             ,ModCreativeModeTab.MODSTU_TAB_QI2TA1);
 
 
