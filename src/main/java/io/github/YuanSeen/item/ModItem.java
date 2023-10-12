@@ -1,9 +1,12 @@
 package io.github.YuanSeen.item;
 
 import io.github.YuanSeen.Main;
+import io.github.YuanSeen.block.ModBlock;
 import io.github.YuanSeen.item.custom.qin1ming2dan1;
+import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemNameBlockItem;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -18,7 +21,7 @@ public class ModItem {
 
 
     public static final RegistryObject<Item> HENG2XIN1CAO3 = ITEM.register("heng2xin1cao3",
-            ()->new Item(new Item.Properties().tab(ModCreativeModeTab.MODSTU_TAB_YAO4CAI2)));
+            ()->new ItemNameBlockItem(ModBlock.HENG2XIN1CAO2_BLOCK.get(),new Item.Properties().tab(ModCreativeModeTab.MODSTU_TAB_YAO4CAI2).food(new FoodProperties.Builder().nutrition(2).saturationMod(2f).build())));
     //创建了一个叫做 恒心草 的物品，放在了 药材 物品栏
 
     public static final RegistryObject<Item> CE4SHI4WU4PIN302 = ITEM.register("ce4shi4wu4pin302",

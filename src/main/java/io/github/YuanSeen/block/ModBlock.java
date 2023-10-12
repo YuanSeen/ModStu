@@ -1,6 +1,7 @@
 package io.github.YuanSeen.block;
 
 import io.github.YuanSeen.Main;
+import io.github.YuanSeen.block.custom.heng2xin1cao3_block;
 import io.github.YuanSeen.block.custom.si3wang2mi2wu4;
 import io.github.YuanSeen.block.custom.yao4xiang1lu2;
 import io.github.YuanSeen.item.ModCreativeModeTab;
@@ -9,7 +10,9 @@ import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.DropExperienceBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.Material;
@@ -76,6 +79,9 @@ public class ModBlock {
                     .requiresCorrectToolForDrops()
                     .lightLevel(state ->state.getValue(yao4xiang1lu2.USE)?15:0))
             ,ModCreativeModeTab.MODSTU_TAB_QI2TA1);
+
+    public static final RegistryObject<Block> HENG2XIN1CAO2_BLOCK = BLOCK.register("heng2xin1cao3_block",
+            () -> new heng2xin1cao3_block(BlockBehaviour.Properties.copy(Blocks.WHEAT)));
 
 
 

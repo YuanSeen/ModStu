@@ -1,0 +1,25 @@
+{
+  "variants": {
+    "age=0": {
+      "model": "modstu:block/heng2xin1cao3_block_0"
+    },
+    "age=1": {
+      "model": "modstu:block/heng2xin1cao3_block_0"
+    },
+    "age=2": {
+      "model": "modstu:block/heng2xin1cao3_block_1"
+    },
+    "age=3": {
+      "model": "modstu:block/heng2xin1cao3_block_1"
+    },
+    "age=4": {
+      "model": "modstu:block/heng2xin1cao3_block_2"
+    },
+    "age=5": {
+      "model": "modstu:block/heng2xin1cao3_block_2"
+    },
+    "age=6": {
+      "model": "modstu:block/heng2xin1cao3_block_3"
+    }
+  }
+}
