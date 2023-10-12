@@ -23,7 +23,7 @@
           "block": "modstu:heng2xin1cao3_block",
           "condition": "minecraft:block_state_property",
           "properties": {
-            "age": "6"
+            "age": "5"
           }
         }
       ],
