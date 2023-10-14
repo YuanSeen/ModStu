@@ -3,6 +3,7 @@ package io.github.YuanSeen;
 import com.mojang.logging.LogUtils;
 import io.github.YuanSeen.block.ModBlock;
 import io.github.YuanSeen.item.ModItem;
+import io.github.YuanSeen.villager.ModVillager;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -24,6 +25,7 @@ public class Main {
 
         ModItem.register(modEventBus);
         ModBlock.register(modEventBus);
+        ModVillager.register(modEventBus);
 
         modEventBus.addListener(this::commonSetup);
         MinecraftForge.EVENT_BUS.register(this);
@@ -38,6 +40,7 @@ public class Main {
 
     private void commonSetup(final FMLCommonSetupEvent event)
     {
+        event.enqueueWork(ModVillager::registerPOIs);
     }
 
     @Mod.EventBusSubscriber(modid = MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
