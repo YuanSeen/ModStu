@@ -33,6 +33,7 @@ public class ModEvent {
             //添加一个新交易，提供绿宝石5个,获得的物品stack,最大交易10次，返回经验8，价格浮动0.02
             trades.get(villagerLevel).add((trader,rand) -> new MerchantOffer(new ItemStack(Items.EMERALD,5),
                     stack,10,8,0.02f));
+            //添加一个新交易，提供五个绿宝石、五个恒心草，获得物品stack1，最大交易10此，返回经验8，价格浮动0.02
             trades.get(2).add((trader,rand) -> new MerchantOffer(new ItemStack(Items.EMERALD,5),stack,
                     stack1,10,8,0.02f));
 
