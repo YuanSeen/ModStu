@@ -1,0 +1,6 @@
+{
+  "type": "forge:add_features",
+  "biomes": "#minecraft:is_overworld",
+  "features": "modstu:placed_ling2shi2kuang4",
+  "step": "underground_ores"
+}
