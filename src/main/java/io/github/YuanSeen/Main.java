@@ -3,6 +3,7 @@ package io.github.YuanSeen;
 import com.mojang.logging.LogUtils;
 import io.github.YuanSeen.block.ModBlock;
 import io.github.YuanSeen.item.ModItem;
+import io.github.YuanSeen.networking.ModMessages;
 import io.github.YuanSeen.villager.ModVillager;
 import io.github.YuanSeen.world.feature.ModConfiguredFeatures;
 import io.github.YuanSeen.world.feature.ModPlacedFeatures;
@@ -48,6 +49,8 @@ public class Main {
     private void commonSetup(final FMLCommonSetupEvent event)
     {
         event.enqueueWork(ModVillager::registerPOIs);
+
+        ModMessages.register();
     }
 
     @Mod.EventBusSubscriber(modid = MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
