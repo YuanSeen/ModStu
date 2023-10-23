@@ -6,8 +6,14 @@ import io.github.YuanSeen.networking.packet.ExampleC2SPacket;
 import io.github.YuanSeen.networking.packet.FlyInBlock;
 import io.github.YuanSeen.util.KeyBinding;
 import net.minecraft.client.Minecraft;
+import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.MoverType;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.client.event.RegisterKeyMappingsEvent;
@@ -25,8 +31,20 @@ public class ClientEvents {
             }
 
             if (KeyBinding.FLYINBLOCK_KEY.consumeClick()){
+                Player player = Minecraft.getInstance().player;
+                Level level = player.getLevel();
+                if (level.getBlockState(player.getOnPos()).getBlock().equals(Blocks.COAL_BLOCK)) {
+                    double x = player.getBlockX();
+                    double y = player.getBlockY();
+                    double z = player.getBlockZ();
+
+                    player.setPos(new Vec3(x,y+20,z));
+
+//                    level.destroyBlock(new BlockPos(x,y,z),true);
+                    level.destroyBlock(new BlockPos(x,y-1,z),false);
+                    player.sendSystemMessage(Component.literal("??"));
+                }
                 ModMessages.sendToServer(new FlyInBlock());
-                Minecraft.getInstance().player.sendSystemMessage(Component.literal("??"));
             }
         }
 

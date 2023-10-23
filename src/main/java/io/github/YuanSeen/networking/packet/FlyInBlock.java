@@ -1,7 +1,9 @@
 package io.github.YuanSeen.networking.packet;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.MoverType;
@@ -28,22 +30,15 @@ public class FlyInBlock {
         context.enqueueWork(() -> {
             ServerPlayer player = context.getSender();
             ServerLevel level = player.getLevel();
-            if (hasFlyAround(player, level)) {
+            if (level.getBlockState(player.getOnPos()).getBlock().equals(Blocks.COAL_BLOCK)) {
                 double x = player.getBlockX();
                 double y = player.getBlockY();
                 double z = player.getBlockZ();
-
-                player.move(MoverType.PLAYER,new Vec3(x,y+20,z));
-
-                level.destroyBlock(new BlockPos(x,y,z),false);
+                level.destroyBlock(new BlockPos(x,y-1,z),false);
+                player.sendSystemMessage(Component.literal("??"));
             }
 
         });
         return true;
         }
-
-    private boolean hasFlyAround(ServerPlayer player,ServerLevel level){
-
-        return player.getFeetBlockState().is(Blocks.COAL_BLOCK);
-    }
 }
