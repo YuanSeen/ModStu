@@ -1,6 +1,7 @@
 package io.github.YuanSeen.event;
 
 import io.github.YuanSeen.Main;
+import io.github.YuanSeen.item.ModItem;
 import io.github.YuanSeen.ling2li4.PlayerLing2li4;
 import io.github.YuanSeen.ling2li4.PlayerLing2li4Provider;
 import io.github.YuanSeen.networking.ModMessages;
@@ -10,6 +11,7 @@ import io.github.YuanSeen.util.KeyBinding;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.MoverType;
 import net.minecraft.world.entity.player.Player;
@@ -21,6 +23,8 @@ import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.client.event.RegisterKeyMappingsEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+
+import javax.swing.text.JTextComponent;
 
 public class ClientEvents {
     @Mod.EventBusSubscriber(modid = Main.MOD_ID,value = Dist.CLIENT)
@@ -37,6 +41,12 @@ public class ClientEvents {
                 Level level = player.getLevel();
 
                 player.getCapability(PlayerLing2li4Provider.PLAYER_LING2LI4).ifPresent(Ling2li4 -> {
+                    if (Ling2li4.getLing2li4() < 20 &&
+                            player.getMainHandItem().getItem().equals(ModItem.LING2SHI2.get())) {
+                        player.sendSystemMessage(Component.literal("add Ling2li4 4"));
+                        ModMessages.sendToServer(new PlayerLing2li4());
+                    }
+
                     if (Ling2li4.getLing2li4() > 0){
                         Ling2li4.subling2li4(2);
                         player.sendSystemMessage(Component.literal("sub Ling2li4 2"));
@@ -49,10 +59,11 @@ public class ClientEvents {
                             player.setPos(new Vec3(x,y,z));
 
                             level.destroyBlock(new BlockPos(x,y-1,z),false);
+
+                            ModMessages.sendToServer(new FlyInBlock());
                         }
                     }
                 });
-                ModMessages.sendToServer(new FlyInBlock());
             }
         }
 

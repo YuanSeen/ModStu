@@ -3,6 +3,7 @@ package io.github.YuanSeen.networking;
 import io.github.YuanSeen.Main;
 import io.github.YuanSeen.networking.packet.ExampleC2SPacket;
 import io.github.YuanSeen.networking.packet.FlyInBlock;
+import io.github.YuanSeen.networking.packet.Hui1fu4ling2li4;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.network.NetworkDirection;
@@ -40,6 +41,12 @@ public class ModMessages {
                 .decoder(FlyInBlock::new)
                 .encoder(FlyInBlock::toByte)
                 .consumerMainThread(FlyInBlock::handle)
+                .add();
+
+        net.messageBuilder(Hui1fu4ling2li4.class,id(),NetworkDirection.PLAY_TO_SERVER)
+                .decoder(Hui1fu4ling2li4::new)
+                .encoder(Hui1fu4ling2li4::toByte)
+                .consumerMainThread(Hui1fu4ling2li4::handle)
                 .add();
 
     }

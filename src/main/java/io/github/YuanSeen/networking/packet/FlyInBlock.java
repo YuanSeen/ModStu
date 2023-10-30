@@ -36,6 +36,7 @@ public class FlyInBlock {
                 double z = player.getBlockZ();
                 level.destroyBlock(new BlockPos(x,y-1,z),false);
                 player.sendSystemMessage(Component.literal("??"));
+
             }
 
         });
