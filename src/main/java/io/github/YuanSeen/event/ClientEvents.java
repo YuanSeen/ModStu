@@ -1,6 +1,8 @@
 package io.github.YuanSeen.event;
 
 import io.github.YuanSeen.Main;
+import io.github.YuanSeen.ling2li4.PlayerLing2li4;
+import io.github.YuanSeen.ling2li4.PlayerLing2li4Provider;
 import io.github.YuanSeen.networking.ModMessages;
 import io.github.YuanSeen.networking.packet.ExampleC2SPacket;
 import io.github.YuanSeen.networking.packet.FlyInBlock;
@@ -33,17 +35,23 @@ public class ClientEvents {
             if (KeyBinding.FLYINBLOCK_KEY.consumeClick()){
                 Player player = Minecraft.getInstance().player;
                 Level level = player.getLevel();
-                if (level.getBlockState(player.getOnPos()).getBlock().equals(Blocks.COAL_BLOCK)) {
-                    double x = player.getBlockX();
-                    double y = player.getBlockY();
-                    double z = player.getBlockZ();
 
-                    player.setPos(new Vec3(x,y+20,z));
+                player.getCapability(PlayerLing2li4Provider.PLAYER_LING2LI4).ifPresent(Ling2li4 -> {
+                    if (Ling2li4.getLing2li4() > 0){
+                        Ling2li4.subling2li4(2);
+                        player.sendSystemMessage(Component.literal("sub Ling2li4 2"));
+                        if (level.getBlockState(player.getOnPos()).getBlock().equals(Blocks.COAL_BLOCK)
+                        ){
+                            double x = player.getBlockX();
+                            double y = player.getBlockY();
+                            double z = player.getBlockZ();
 
-//                    level.destroyBlock(new BlockPos(x,y,z),true);
-                    level.destroyBlock(new BlockPos(x,y-1,z),false);
-                    player.sendSystemMessage(Component.literal("??"));
-                }
+                            player.setPos(new Vec3(x,y,z));
+
+                            level.destroyBlock(new BlockPos(x,y-1,z),false);
+                        }
+                    }
+                });
                 ModMessages.sendToServer(new FlyInBlock());
             }
         }
