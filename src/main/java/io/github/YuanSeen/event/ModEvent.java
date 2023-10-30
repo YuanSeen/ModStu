@@ -23,9 +23,6 @@ import net.minecraftforge.fml.LogicalSide;
 import net.minecraftforge.fml.common.Mod;
 
 import java.util.List;
-import java.util.Optional;
-
-import static jdk.internal.org.jline.utils.Colors.h;
 
 @Mod.EventBusSubscriber(modid = Main.MOD_ID)
 public class ModEvent {
@@ -105,4 +102,3 @@ public class ModEvent {
 //            });
 //        }
 //    }
-}
