@@ -52,7 +52,7 @@ public class ModEvent {
     @SubscribeEvent
     public static void onAttackCapabilitiesPlayer(AttachCapabilitiesEvent event){
         if (event.getObject() instanceof Player player){
-            if (player.getCapability(PlayerLing2li4Provider.PLAYER_LING2LI4).isPresent()){
+            if (!player.getCapability(PlayerLing2li4Provider.PLAYER_LING2LI4).isPresent()){
                 event.addCapability(new ResourceLocation(Main.MOD_ID,"properties"),new PlayerLing2li4Provider());
             }
 
@@ -83,7 +83,7 @@ public class ModEvent {
         if (event.side == LogicalSide.SERVER){
             event.player.getCapability(PlayerLing2li4Provider.PLAYER_LING2LI4).ifPresent(ling2li4 -> {
                 if (ling2li4.getLing2li4() > 0 && event.player.getRandom().nextFloat() < 0.005f){
-
+                    ling2li4.subling2li4(1);
                 }
 
             }

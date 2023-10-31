@@ -1,5 +1,6 @@
 package io.github.YuanSeen.networking.packet;
 
+import io.github.YuanSeen.ling2li4.PlayerLing2li4Provider;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
@@ -30,15 +31,22 @@ public class FlyInBlock {
         context.enqueueWork(() -> {
             ServerPlayer player = context.getSender();
             ServerLevel level = player.getLevel();
-            if (level.getBlockState(player.getOnPos()).getBlock().equals(Blocks.COAL_BLOCK)) {
-                double x = player.getBlockX();
-                double y = player.getBlockY();
-                double z = player.getBlockZ();
-                level.destroyBlock(new BlockPos(x,y-1,z),false);
-                player.sendSystemMessage(Component.literal("??"));
+            //if (level.getBlockState(player.getOnPos()).getBlock().equals(Blocks.COAL_BLOCK)) {}
+                player.getCapability(PlayerLing2li4Provider.PLAYER_LING2LI4).ifPresent(playerLing2li4 -> {
 
-            }
+                    if (playerLing2li4.getLing2li4() > 2) {
+                        playerLing2li4.subling2li4(2);
 
+                        double x = player.getBlockX();
+                        double y = player.getBlockY();
+                        double z = player.getBlockZ();
+
+                        level.destroyBlock(new BlockPos(x,y-1,z),false);
+
+                        player.setPos(new Vec3(x,y+20,z));
+                    }
+
+                });
         });
         return true;
         }

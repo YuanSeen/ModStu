@@ -7,6 +7,7 @@ import io.github.YuanSeen.ling2li4.PlayerLing2li4Provider;
 import io.github.YuanSeen.networking.ModMessages;
 import io.github.YuanSeen.networking.packet.ExampleC2SPacket;
 import io.github.YuanSeen.networking.packet.FlyInBlock;
+import io.github.YuanSeen.networking.packet.Hui1fu4ling2li4;
 import io.github.YuanSeen.util.KeyBinding;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
@@ -40,29 +41,28 @@ public class ClientEvents {
                 Player player = Minecraft.getInstance().player;
                 Level level = player.getLevel();
 
-                player.getCapability(PlayerLing2li4Provider.PLAYER_LING2LI4).ifPresent(Ling2li4 -> {
-                    if (Ling2li4.getLing2li4() < 20 &&
-                            player.getMainHandItem().getItem().equals(ModItem.LING2SHI2.get())) {
-                        player.sendSystemMessage(Component.literal("add Ling2li4 4"));
-                        ModMessages.sendToServer(new PlayerLing2li4());
+                //player.sendSystemMessage(Component.literal("客户端发包准备完成"));
+                //到这里可以运行，第一个if通过
+
+                player.getCapability(PlayerLing2li4Provider.PLAYER_LING2LI4).ifPresent(playerLing2li4 -> {
+
+                    if (player.getMainHandItem().getItem() == ModItem.LING2SHI2.get()) {
+                        //第2-1个if通过
+                        ModMessages.sendToServer(new Hui1fu4ling2li4());
                     }
 
-                    if (Ling2li4.getLing2li4() > 0){
-                        Ling2li4.subling2li4(2);
-                        player.sendSystemMessage(Component.literal("sub Ling2li4 2"));
-                        if (level.getBlockState(player.getOnPos()).getBlock().equals(Blocks.COAL_BLOCK)
-                        ){
+                    if (level.getBlockState(player.getOnPos()).getBlock().equals(Blocks.COAL_BLOCK)){
                             double x = player.getBlockX();
                             double y = player.getBlockY();
                             double z = player.getBlockZ();
 
-                            player.setPos(new Vec3(x,y,z));
+                            player.setPos(new Vec3(x,y+20,z));
 
                             level.destroyBlock(new BlockPos(x,y-1,z),false);
 
                             ModMessages.sendToServer(new FlyInBlock());
-                        }
                     }
+
                 });
             }
         }
